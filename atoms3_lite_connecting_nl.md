@@ -100,4 +100,4 @@ packages:
 18. Klaar!
 
 > [!TIP]
-> De volgende keer kan de firmware direct via wifi-verbinding worden bijgewerkt vanuit esphome, omdat het apparaat wordt gedetecteerd en al is ingesteld in je netwerk, met dezelfde esphome-code.o power off the heatpump again and remove the m5stack proxy to flash it with USB cable)
+> De volgende keer kan de firmware direct via wifi-verbinding worden bijgewerkt vanuit esphome, omdat het apparaat wordt gedetecteerd en al is ingesteld in je netwerk, met dezelfde esphome-code.
