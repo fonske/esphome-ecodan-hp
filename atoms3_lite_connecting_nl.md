@@ -28,7 +28,7 @@ FTC Flow Temperature Controller (hoofdcontroller die normaal op de binnenunit is
 
 ![image](https://github.com/gekkekoe/esphome-ecodan-hp/blob/main/img/m5stack_installed.jpg?raw=true)
 
-3. Als de Atom vooraf geflasht is, ben je eigenlijk klaar. Sluit de unit en herstel de stroom. De Atom gaat in WiFi-hotspotmodus zodat je hem kunt verbinden met je thuisnetwerk. Zie https://esphome.io/components/captive_portal.html
+3. Als de Atom vooraf geflasht is, ben je eigenlijk klaar. Sluit de unit en herstel de spanning. De Atom gaat in WiFi-hotspotmodus zodat je hem kunt verbinden met je thuisnetwerk. Zie https://esphome.io/components/captive_portal.html
 
 4. Ga nu naar Home Assistant. Met de Atom op je WiFi-netwerk verschijnt deze als een nieuw apparaat en kan op de gebruikelijke manier worden toegevoegd.
 
@@ -36,10 +36,10 @@ FTC Flow Temperature Controller (hoofdcontroller die normaal op de binnenunit is
 > [!WARNING]
 > Sluit NOOIT een usb-kabel aan op de ATOM S3 lite ESP WANNEER deze is aangesloten op de warmtepomp..
 > 
-> Zet de warmtepomp UIT en zet vervolgens de stroomonderbrekers van de warmtepomp uit en verwijder eerst de ESP.
+> Zet de warmtepomp UIT en zet vervolgens de zekeringautomaten van de warmtepomp uit en verwijder eerst de ESP. Indien je de kabel aan de CN105 poort losmaakt, let dan op het klipje wat ingedrukt dient te worden voordat de stekker los gaat.
 
 Als je het zelf wilt flashen, installeer dan de ESPHome-integratie als een add-on in Home Assistant.
-1. Kies nieuw apparaat en druk op doorgaan
+1. Kies in esphome builder voor nieuw apparaat en druk op doorgaan
 2. Geef het een naam, bijvoorbeeld ecodan-esphome
 3. Kies bijvoorbeeld esp32-s3
 4. Er wordt een configuratie toegevoegd
