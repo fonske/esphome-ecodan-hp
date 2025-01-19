@@ -28,7 +28,7 @@ FTC Flow Temperature Controller (hoofdcontroller die normaal op de binnenunit is
 
 ![image](https://github.com/gekkekoe/esphome-ecodan-hp/blob/main/img/m5stack_installed.jpg?raw=true)
 
-3. Als de Atom vooraf geflasht is, ben je eigenlijk klaar. Sluit de unit en herstel de stroom. De Atom gaat in WiFi-hotspotmodus zodat je hem kunt verbinden met je thuisnetwerk. Zie https://esphom[...]
+3. Als de Atom vooraf geflasht is, ben je eigenlijk klaar. Sluit de unit en herstel de stroom. De Atom gaat in WiFi-hotspotmodus zodat je hem kunt verbinden met je thuisnetwerk. Zie https://esphome.io/components/captive_portal.html
 
 4. Ga nu naar Home Assistant. Met de Atom op je WiFi-netwerk verschijnt deze als een nieuw apparaat en kan op de gebruikelijke manier worden toegevoegd.
 
