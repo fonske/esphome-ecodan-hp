@@ -101,10 +101,3 @@ packages:
 
 > [!TIP]
 > De volgende keer kan de firmware direct via wifi-verbinding worden bijgewerkt vanuit esphome, omdat het apparaat wordt gedetecteerd en al is ingesteld in je netwerk, met dezelfde esphome-code.o power off the heatpump again and remove the m5stack proxy to flash it with USB cable)
-14. Flash the atom connected to a usb cable by using  [Esphome Web](https://web.esphome.io/?dashboard_install)
-15. Click connect and choose the correct com port. And then click install.
-16. Disconnect from usb cable and install back inside the heatpump on CN105
-17. All done!
-
-> [!TIP]
-> Next time, the firmware can be updated through wifi connection directly, from within esphome, as it detects the device and is already setup in your network, with the same esphome code.
