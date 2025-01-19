@@ -1,7 +1,7 @@
 # Verbinden en installeren van de ATOM S3 setup
 
 > [!TIP]
-> [De gemakkelijkste optie is om een aangepaste m5stack grove kabel met CN105 stekker van @fonkse te gebruiken](https://github.com/gekkekoe/esphome-ecodan-hp/discussions/70#discussioncomment-11133291)
+> [De gemakkelijkste optie is om een aangepaste m5stack grove kabel met CN105 stekker van @fonkse te gebruiken](https://tweakers.net/aanbod/3767796/m5stack-atom-voor-besturing-via-cn105-mitsubishi-electric-warmtepomp.html)
 
 @fonkse heeft grove bekabeling aangepast en het is eigenlijk plug en play. Kabels zijn in diverse lengte te verkrijgen maar 1 mtr is vaak voldoende om de Atom S3 module buiten de warmtepomp te hangen ivm wifi bereik.
 
