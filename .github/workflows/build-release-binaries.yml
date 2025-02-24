@@ -1,0 +1,92 @@
+name: Build Release Firmware OTA images
+
+on:
+  release:
+    types:
+      - created
+#  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build Release Assets
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: 
+        lang: [en, nl, es, fr, it]
+        board: [esp32s3, esp32s3-proxy2]
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+      - name: Create dummy wifi credentials
+        run: |
+          echo "wifi_ssid: dummy" > secrets.yaml
+          echo "wifi_password: dummydummydummy" >> secrets.yaml
+          echo "PREFIX=${{ matrix.board }}-${{ matrix.lang }}-${{ github.event.release.tag_name }}" >> $GITHUB_ENV
+          echo "MANIFEST=manifest-${{ matrix.board }}-${{ matrix.lang }}" >> $GITHUB_ENV
+
+      - name: prepare build yaml
+        run: |
+          sed "s/esp32s3.yaml,/${{ matrix.board }}.yaml,/g; \
+              s/ecodan-labels-en.yaml,/ecodan-labels-${{ matrix.lang }}.yaml,/g; \
+              s/#confs\\/esp32s3-led.yaml/confs\/esp32s3-led.yaml/g" ecodan-esphome.yaml > build.yaml
+          sed "s/manifest/$MANIFEST/g; s/VERSION/$PREFIX/g" confs/ota.yaml > ota.yaml
+          echo "<<: !include ota.yaml" >> build.yaml
+
+      - name: Generated yaml
+        run: |
+          cat secrets.yaml
+          cat ota.yaml
+          cat build.yaml
+
+      - name: Display the release tag
+        run: echo ${{ github.event.release.tag_name }}
+
+      - name: Prepare build env
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Setup esphome build env
+        run: |
+          python -m venv venv
+          source venv/bin/activate
+          pip install wheel
+          pip install esphome
+
+      - name: Build firmware
+        run: |
+          source venv/bin/activate
+          esphome compile build.yaml
+          cp .esphome/build/ecodan-heatpump/.pioenvs/ecodan-heatpump/firmware.ota.bin $PREFIX.ota.bin
+          cp .esphome/build/ecodan-heatpump/.pioenvs/ecodan-heatpump/firmware.factory.bin $PREFIX.factory.bin
+
+      - name: Create manifest.json for firmware
+        run: |
+          md5ota=$(md5sum $PREFIX.ota.bin | cut -d ' ' -f 1)
+          echo "md5: $md5ota"
+          echo "ota: $PREFIX.ota.bin"
+          echo "factory: $PREFIX.factory.bin"
+
+          sed "s/VERSION/$PREFIX/g; \
+              s/MD5OTA/$md5ota/g; \
+              s/FILEOTA/$PREFIX.ota.bin/g; \
+              s/FILEFACTORY/$PREFIX.factory.bin/g" json/manifest.json > $MANIFEST.json
+          cat $MANIFEST.json
+      
+      - name: Upload OTA firmwares
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref }}
+          file: ${{ matrix.board }}*.bin
+          file_glob: true
+
+      - name: Upload OTA manifests
+        uses: svenstaro/upload-release-action@v2
+        with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          tag: ${{ github.ref }}
+          file: manifest*.json
+          file_glob: true
+
+  

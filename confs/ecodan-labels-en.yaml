@@ -93,6 +93,7 @@ substitutions:
   status_operation: Operation Mode
   output_power: Output Power
   computed_output_power: Estimated Output Power
+  computed_cop: Estimated COP
   daily_computed_output_power: Estimated Total Daily Energy Produced
   daily_repported_input_power: Reported Total Daily Energy Consumption
   outside_temp: Outside Temp
@@ -113,3 +114,13 @@ substitutions:
   status_multi_zone_zone2: Z2 Working
   fault_code_text: Fault code
   refrigerant_error_code_text: Refrigerant error code
+  compressor_starts: Accumulated Compressor Starts
+  discharge_temp: Discharge Temp
+  ou_liquid_pipe_temp: Outside Unit Liquid Pipe 1 Temp
+  ou_two_phase_pipe_temp: Outside Unit Two Phase Pipe Temp
+  ou_suction_pipe_temp: Outside Unit Suction Pipe Temp
+  ou_heatsink_temp: Outside Unit Heatsink Temp
+  ou_compressor_surface_temp: Outside Unit Compressor Surface Temp
+  super_heat_temp: Discharge Superheat Temp
+  sub_cool_temp: Subcooling Temp
+  fan_speed: Fan Speed

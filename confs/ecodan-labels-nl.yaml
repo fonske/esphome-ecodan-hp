@@ -93,6 +93,7 @@ substitutions:
   status_operation: Status Bedrijf
   output_power: Afgegeven vermogen
   computed_output_power: Geschatte afgegeven vermogen
+  computed_cop: Geschatte COP
   daily_computed_output_power: Geschatte afgegeven vermogen (Per dag)
   daily_repported_input_power: Gerapporteerde opgenomen vermogen (Per dag)
   outside_temp: Buiten temp
@@ -113,3 +114,13 @@ substitutions:
   status_multi_zone_zone2: Z2 actief
   fault_code_text: Fout code
   refrigerant_error_code_text: Koelmiddel fout code
+  compressor_starts: Compressor Starts
+  discharge_temp: Ontladingstemperatuur
+  ou_liquid_pipe_temp: Buitenunit Vloeistofleiding 1
+  ou_two_phase_pipe_temp: Buitenunit Tweefasenbuistemperatuur
+  fan_speed: Ventilatorsnelheid
+  ou_suction_pipe_temp: Buitenunit aanzuig leiding temperatuur
+  ou_heatsink_temp: Buitenunit koellichaam temperatuur
+  ou_compressor_surface_temp: Buitenunit Compressor Oppervlakte temperatuur
+  super_heat_temp: Discharge Superheat temperatuur
+  sub_cool_temp: Subcooling temperatuur

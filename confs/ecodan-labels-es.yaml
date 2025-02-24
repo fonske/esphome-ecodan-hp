@@ -93,6 +93,7 @@ substitutions:
   status_operation: Modo de Operación
   output_power: Potencia de Salida
   computed_output_power: Potencia de Salida Estimada
+  computed_cop: COP Estimada
   daily_computed_output_power: Potencia de Salida Estimada (A diario)
   daily_repported_input_power: Consumo Total Diario de Energía Reportado
   outside_temp: Temp. Exterior
@@ -113,3 +114,13 @@ substitutions:
   status_multi_zone_zone2: Z2 en Funcionamiento
   fault_code_text: Código de Falla
   refrigerant_error_code_text: Código de Error del Refrigerante
+  compressor_starts: Arranques acumulados del compresor
+  discharge_temp: Temperatura de descarga
+  ou_liquid_pipe_temp: Tubo de líquido de la unidad exterior 1 Temperatura
+  ou_two_phase_pipe_temp: Temperatura de la tubería bifásica de la unidad exterior
+  fan_speed: Velocidad del ventilador
+  ou_suction_pipe_temp: Temperatura de la tubería de succión de la unidad exterior
+  ou_heatsink_temp: Temperatura del disipador de calor de la unidad exterior
+  ou_compressor_surface_temp: Temperatura de la superficie del compresor de la unidad exterior
+  super_heat_temp: Temperatura de sobrecalentamiento de descarga
+  sub_cool_temp: Temperatura de subenfriamiento

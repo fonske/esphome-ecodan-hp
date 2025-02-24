@@ -1,14 +1,7 @@
 # ESPHome Ecodan heatpump
-It was based on https://github.com/rbroker/ecodan-ha-local. I've also managed to reverse engineer quite some additional properties and controls.
-- 0x03 : error codes
-- 0x05 : heat source
-- 0x0B : refrigerant liquid temperature
-- 0x10 : In1, In5, In6 thermostat status
-- 0x14 : booster / immersion heater states
-- 0x15 : pump status
-- 0x28 : forced dhw status 
-- 0x35 : room temp setpoint (signed) with flags
-- 0xC9 : configuration command. It reports back controller version and much more, need more investigation.
+ESPHome implementation of the CN105 protocal. It can operate as standalone or with slave (melcloud/procon) attached. It includes server control mode, realtime power output estimation and realtime daily energy counters. 
+
+The remote thermostat protocol CNRF is supported by https://github.com/gekkekoe/esphome-ecodan-remote-thermostat. It implements a virtual thermostat that can be linked with any temperature sensor.
 
 # available languages
 English (default), Dutch, Italian, French, Spanish. Select the language in `ecodan-esphome.yaml` file. 
@@ -57,10 +50,22 @@ https://www.digikey.nl/en/products/detail/seeed-technology-co-ltd/110990036/5482
 JST PAP-05V-S connector
 https://www.digikey.nl/en/products/detail/jst-sales-america-inc/PAP-05V-S/759977
 
+# easy install: Download the latest firmware
+## Get the factory.bin firmware for initial flash
+* Go to https://github.com/gekkekoe/esphome-ecodan-hp/releases/latest and download one of the factory.bin files. 
+```
+Firmware for Atom S3 (Lite): esp32s3-xx-version.factory.bin (where xx = language)
+Firmware for Atom S3 (Lite) with proxy PCB: esp32s3-proxy2-xx-version.factory.bin (where xx = language)
+```
+* Go to https://web.esphome.io/?dashboard_install (Only works in Chrome or Edge), connect the atom via usb-c and click connect. Chrome will let you select the detected esp. Finally you click install and select the factory.bin firmware (downloaded in previous step) and flash.
 
-# build esphome-ecodan-hp firmware
+* Power the esp via usb-c. The led indicator will turn blue indicating that its in access point mode. Connect to the wifi network `ecodan-heatpump` with password `configesp`. Fill in your wifi credentials and click save. The esp will reboot and the led will become green indicating that the wifi is connected correctly. Disconnect the unit from the computer and connect it to the heatpump via the CN105 connector (don't forget to power down the unit via circuit breaker!).
+
+* You will get notifications if an update is available and its updateable in Home Assistant itself. 
+
+# build esphome-ecodan-hp firmware from source
 ### Build via cmd line:
-* Install ESPHome https://esphome.io/guides/getting_started_command_line.html
+* Install ESPHome https://esphome.io/guides/getting_started_command_line.html. (Use [Python <= 3.12](https://github.com/esphome/issues/issues/6558) to avoid build errors on Windows)
     ```console
     python3 -m venv venv
     source venv/bin/activate
@@ -82,7 +87,9 @@ packages:
     ref: main
     refresh: always
     files: [ 
-            confs/esp32s3.yaml, # confs/esp32.yaml, for regular board
+            confs/base.yaml,            # required
+            confs/request-codes.yaml,   # disable if your unit does not support request codes (service menu)
+            confs/esp32s3.yaml,         # confs/esp32.yaml, for regular board
             confs/zone1.yaml,
             ## enable if you want to use zone 2
             #confs/zone2.yaml,
@@ -101,12 +108,13 @@ packages:
 ```console
 esphome compile ecodan-esphome.yaml
 ```
-* To find the tty* where the esp32 is connected at, use `sudo dmesg | grep tty`. On my machine it was `ttyACM0` for usb-c, and `ttyUSB0` for usb-a.
+* To find the tty* where the esp32 is connected at, use `sudo dmesg | grep tty`. On my machine it was `ttyACM0` for usb-c, and `ttyUSB0` for usb-a. `tty.usbmodemxxx` for Mac and `COMXX` for Windows
+
 * Connect your esp32 via usb and flash
 ```console 
 esphome upload --device=/dev/ttyACM0 ecodan-esphome.yaml
 ```
-* You can update the firmware via de web interface of the esp after the initial flash, or use the following command to flash over the network
+* You can update the firmware via the web interface of the esp after the initial flash, or use the following command to flash over the network
 ```console 
 esphome upload --device ip_address ecodan-esphome.yaml
 ```

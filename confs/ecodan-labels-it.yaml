@@ -93,6 +93,7 @@ substitutions:
   status_operation: Modalità Funzionamento
   output_power: En. Prod.
   computed_output_power: Stima En. Prod.
+  computed_cop: Stimato COP
   daily_computed_output_power: Stima En. Prod. (Giorno)
   daily_repported_input_power: Consumo Energetico Giornaliero Totale Segnalato
   outside_temp: T. Esterna
@@ -113,3 +114,13 @@ substitutions:
   status_multi_zone_zone2: Z2 funzionante
   fault_code_text: Codice di errore
   refrigerant_error_code_text: Liq. Refr. codice di errore
+  compressor_starts: Démarrages cumulés du compresseur
+  discharge_temp: Temperatura di scarico
+  ou_liquid_pipe_temp: Temperatura tubo liquido unità esterna 1
+  ou_two_phase_pipe_temp: Unità esterna Temperatura tubo bifase
+  fan_speed: Velocità della ventola
+  ou_suction_pipe_temp: Temperatura del tubo di aspirazione dell'unità esterna
+  ou_heatsink_temp: Temperatura del dissipatore di calore dell'unità esterna
+  ou_compressor_surface_temp: Temperatura superficiale del compressore dell'unità esterna
+  super_heat_temp: Temperatura di surriscaldamento dello scarico
+  sub_cool_temp: Temperatura di sottoraffreddamento

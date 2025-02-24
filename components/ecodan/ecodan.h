@@ -40,6 +40,10 @@ namespace ecodan
             binarySensors[key] = obj;
         }
 
+        void enable_request_codes() {
+            hasRequestCodeSensors = true;
+        }
+
         // exposed as external component commands
         void set_room_temperature(float value, esphome::ecodan::SetZone zone);
         void set_flow_target_temperature(float value, esphome::ecodan::SetZone zone);
@@ -52,6 +56,7 @@ namespace ecodan
         void set_controller_mode(CONTROLLER_FLAG flag, bool on);
         void set_mrc_mode(Status::MRC_FLAG flag);
         void set_specific_heat_constant(float newConstant) { specificHeatConstantOverride = newConstant; }
+        void set_polling_interval(uint32_t ms) { this->set_update_interval(ms); }
         void set_uart_parent(uart::UARTComponent *uart) { this->uart_ = uart; }
         void set_proxy_uart(uart::UARTComponent *uart) { this->proxy_uart_ = uart; }
         const Status& get_status() const { return status; }
@@ -86,6 +91,8 @@ namespace ecodan
         bool connected = false;
         bool heatpumpInitialized = false;
         
+        bool hasRequestCodeSensors = false;
+        Status::REQUEST_CODE activeRequestCode = Status::REQUEST_CODE::NONE;
         std::queue<Message> cmdQueue;
 
         bool serial_rx(uart::UARTComponent *uart, Message& msg, bool count_sync_errors = false);
@@ -94,6 +101,7 @@ namespace ecodan
         bool dispatch_next_status_cmd();
         bool dispatch_next_cmd();
         bool schedule_cmd(Message& cmd);
+        bool handle_active_request_codes();
         
         void handle_response(Message& res);
         void handle_get_response(Message& res);
