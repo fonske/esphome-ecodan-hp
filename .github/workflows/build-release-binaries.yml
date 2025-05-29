@@ -6,6 +6,9 @@ on:
       - created
 #  workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build Release Assets
@@ -14,6 +17,7 @@ jobs:
       matrix: 
         lang: [en, nl, es, fr, it]
         board: [esp32s3, esp32s3-proxy2]
+        zone: [z1, z2]
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
@@ -21,8 +25,8 @@ jobs:
         run: |
           echo "wifi_ssid: dummy" > secrets.yaml
           echo "wifi_password: dummydummydummy" >> secrets.yaml
-          echo "PREFIX=${{ matrix.board }}-${{ matrix.lang }}-${{ github.event.release.tag_name }}" >> $GITHUB_ENV
-          echo "MANIFEST=manifest-${{ matrix.board }}-${{ matrix.lang }}" >> $GITHUB_ENV
+          echo "PREFIX=${{ matrix.board }}-${{ matrix.zone }}-${{ matrix.lang }}-${{ github.event.release.tag_name }}" >> $GITHUB_ENV
+          echo "MANIFEST=manifest-${{ matrix.board }}-${{ matrix.zone }}-${{ matrix.lang }}" >> $GITHUB_ENV
 
       - name: prepare build yaml
         run: |
@@ -31,6 +35,12 @@ jobs:
               s/#confs\\/esp32s3-led.yaml/confs\/esp32s3-led.yaml/g" ecodan-esphome.yaml > build.yaml
           sed "s/manifest/$MANIFEST/g; s/VERSION/$PREFIX/g" confs/ota.yaml > ota.yaml
           echo "<<: !include ota.yaml" >> build.yaml
+
+      - if: matrix.zone == 'z2'
+        name: adjust build.yaml for 2 zones
+        run: |
+          cat build.yaml
+          sed -i "s/#confs\\/zone2.yaml/confs\/zone2.yaml/g" build.yaml
 
       - name: Generated yaml
         run: |
@@ -54,13 +64,21 @@ jobs:
           pip install esphome
 
       - name: Build firmware
+        env:
+          GITHUB_TOKEN: ${{ github.TOKEN }}
+        shell: bash
         run: |
           source venv/bin/activate
           esphome compile build.yaml
           cp .esphome/build/ecodan-heatpump/.pioenvs/ecodan-heatpump/firmware.ota.bin $PREFIX.ota.bin
           cp .esphome/build/ecodan-heatpump/.pioenvs/ecodan-heatpump/firmware.factory.bin $PREFIX.factory.bin
+          gh release upload ${{github.event.release.tag_name}} $PREFIX.ota.bin
+          gh release upload ${{github.event.release.tag_name}} $PREFIX.factory.bin
 
       - name: Create manifest.json for firmware
+        env:
+          GITHUB_TOKEN: ${{ github.TOKEN }}
+        shell: bash
         run: |
           md5ota=$(md5sum $PREFIX.ota.bin | cut -d ' ' -f 1)
           echo "md5: $md5ota"
@@ -72,21 +90,4 @@ jobs:
               s/FILEOTA/$PREFIX.ota.bin/g; \
               s/FILEFACTORY/$PREFIX.factory.bin/g" json/manifest.json > $MANIFEST.json
           cat $MANIFEST.json
-      
-      - name: Upload OTA firmwares
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref }}
-          file: ${{ matrix.board }}*.bin
-          file_glob: true
-
-      - name: Upload OTA manifests
-        uses: svenstaro/upload-release-action@v2
-        with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          tag: ${{ github.ref }}
-          file: manifest*.json
-          file_glob: true
-
-  
+          gh release upload ${{github.event.release.tag_name}} $MANIFEST.json
