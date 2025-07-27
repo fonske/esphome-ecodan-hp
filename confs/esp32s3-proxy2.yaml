@@ -1,17 +1,20 @@
 esphome:
   name: ${name}
   friendly_name: ${friendlyName}
+  name_add_mac_suffix: true
   platformio_options:
     board_build.flash_mode: dio
 
 esp32:
   board: esp32-s3-devkitc-1
+  flash_size: 8MB
   framework:
     type: esp-idf
     version: recommended
     # Custom sdkconfig options
     sdkconfig_options:
       COMPILER_OPTIMIZATION_SIZE: y
+      CONFIG_BT_ENABLED: n
 
 uart:
   - id: uart_ecodan
