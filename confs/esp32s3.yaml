@@ -9,7 +9,7 @@ esp32:
   flash_size: 8MB
   framework:
     type: esp-idf
-    version: 5.3.2
+    version: 5.5.1
     # Custom sdkconfig options
     sdkconfig_options:
       COMPILER_OPTIMIZATION_SIZE: y
