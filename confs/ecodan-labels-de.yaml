@@ -4,6 +4,7 @@ substitutions:
   boiler_return_temp: Kessel-Rücklauftemperatur
   booster_heater: Zusatzheizung
   compressor_frequency: Kompressor-Frequenz
+  status_compressor: Kompressor
   compressor_starts: Kompressor-Starts (kumuliert)
   computed_cop: Geschätzter COP
   computed_output_power: Geschätzte Leistung

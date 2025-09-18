@@ -50,6 +50,7 @@ substitutions:
   boiler_return_temp: Caldaia T. Ritorno
   status_booster: Riscaldatore Booster
   compressor_frequency: Freq. Compressore
+  status_compressor: Compressore
   controller_version_text: Controller
   controller_firmware_text: Controller Firmware
   controller_datetime_text: Controller Date

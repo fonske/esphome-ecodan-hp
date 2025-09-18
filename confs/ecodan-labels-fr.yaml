@@ -50,6 +50,7 @@ substitutions:
   boiler_return_temp: Temp retour ballon
   status_booster: Statut réchauffeur élec
   compressor_frequency: Freq Compresseur
+  status_compressor: Compresseur
   controller_version_text: Version Controleur
   controller_firmware_text: Firmware Controleur
   controller_datetime_text: Date du Controleur
