@@ -19,7 +19,7 @@
 namespace esphome {
 namespace ecodan 
 {    
-    static constexpr const char *TAG = "ecodan.component";   
+    static constexpr const char *TAG = "ecodan.component";
 
     class EcodanHeatpump : public PollingComponent {
     public:        
@@ -30,15 +30,20 @@ namespace ecodan
         void dump_config() override;    
     
         void register_sensor(sensor::Sensor *obj, const std::string& key) {
-            sensors[key] = obj;
+            if (obj != nullptr)
+                sensors[key] = obj;
         }
 
         void register_textSensor(text_sensor::TextSensor *obj, const std::string& key) {
-            textSensors[key] = obj;
+            if (obj != nullptr) 
+                textSensors[key] = obj;
         }
 
         void register_binarySensor(binary_sensor::BinarySensor *obj, const std::string& key) {
-            binarySensors[key] = obj;
+            if (obj != nullptr) {
+                obj->publish_state(false);
+                binarySensors[key] = obj;
+            }
         }
 
         void enable_request_code_sensors() {
@@ -88,9 +93,6 @@ namespace ecodan
     private:
         uart::UARTComponent *uart_ = nullptr;
         uart::UARTComponent *proxy_uart_ = nullptr;
-        Message res_buffer_;
-        Message proxy_buffer_;
-        int rx_sync_fail_count = 0;
         uint8_t initialCount = 0;
 
         Status status;
@@ -106,15 +108,19 @@ namespace ecodan
         std::optional<CONTROLLER_FLAG> serverControlFlagBeforeLockout = {};
         std::queue<Message> cmdQueue;
 
-        bool serial_rx(uart::UARTComponent *uart, Message& msg, bool count_sync_errors = false);
+        bool serial_rx(uart::UARTComponent *uart, Message& msg);
         bool serial_tx(uart::UARTComponent *uart, Message& msg);
+        void handle_proxy();
         
         bool disconnect();
         void reset_connection() {
+            if (proxy_available())
+                return;
+
             connected = false;
             initialCount = 0;
             disconnect();
-        };
+    };
         bool initialCmdCompleted() { return initialCount == 3; };
 
         bool dispatch_next_status_cmd();

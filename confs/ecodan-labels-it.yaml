@@ -32,8 +32,8 @@ substitutions:
   z1_flow_temp_target: Z1 C/F T. Mandata
   status_prohibit_cool_z1: Z1 Raff. Proibito
   status_prohibit_heating_z1: Z1 Risc. Proibito
-  heatpump_climate_z1: Z1 Termostato
-  heatpump_climate_room_z1: Z1 temperatura
+  heatpump_climate_z1: Zona 1 Temp. Mandata
+  heatpump_climate_room_z1: Zona 1 Temp. Ambiente
   z1_room_temp_target: Z1 T. Ambiente Desiderata
   z1_room_temp: Z1 T. Ambiente
   heatpump_number_z2_set_flow_temperature: Z2 C/F Mandata
@@ -41,8 +41,8 @@ substitutions:
   status_prohibit_cool_z2: Z2 Raff. Proibito
   status_prohibit_heating_z2: Z2 Risc. Proibito
   heatpump_number_z2_set_room_temperature: Z2 T. Ambiente
-  heatpump_climate_z2: Z2 Termostato
-  heatpump_climate_room_z2: Z2 temperatura
+  heatpump_climate_z2: Zona 2 Temp. Mandata
+  heatpump_climate_room_z2: Zona 2 Temp. Ambiente
   z2_room_temp_target: Z2 T. Ambiente Desiderata
   z2_room_temp: Z2 T. Ambiente
   mixing_tank_temp: Caldaia Mixing Tank
@@ -84,6 +84,8 @@ substitutions:
   heat_compensation_curve: Risc. Curva Compensazione
   cool_target_temperature: Raff. T. Termost.
   cool_flow_temperature: Raff. T. Mandata Fissa
+  floor_dry_up: Asciugatura Massetto
+  cool_compensation_curve: Curva di Compensazione Raffrescamento
   operation_off: "Spento"
   hotwater: Acqua Calda
   heating: Riscaldamento
@@ -130,18 +132,31 @@ substitutions:
   minimum_compressor_on_time: 'Ciclo breve: Tempo minimo compressore'
   lockout_duration: 'Ciclo breve: Durata blocco (min)'
   short_cycle_mitigation_button: 'Ciclo breve: Annulla blocco'
+  predictive_short_cycle_control_enabled: 'Ciclo breve: Prevenzione Predittiva'
+  predictive_short_cycle_high_delta_time_window: 'Ciclo breve: Durata Delta Elevato'
   auto_adaptive_control_enabled: 'Autoadattivo: Controllo'
   heating_slope: 'Autoadattivo: Pendenza Curva Climatica'
   cooling_slope: 'Autoadattivo: Pendenza Curva di Raffrescamento'
   maximum_heating_flow_temp: 'Autoadattivo: Temp. Max. Mandata Riscaldamento'
+  minimum_heating_flow_temp: 'Autoadattivo: Temp. Min. Mandata Riscaldamento'
   minimum_cooling_flow_temp: 'Autoadattivo: Temp. Min. Mandata Raffrescamento'
   cooling_smart_start_temp: 'Autoadattivo: Temp. di Avvio Intelligente Raffrescamento'
   temperature_feedback_source: 'Autoadattivo: Fonte Temperatura Ambiente'
   temperature_feedback_option_room: 'Termostato Ambiente'
-  temperature_feedback_option_api: 'API REST'
+  temperature_feedback_option_api: 'Home Assistant / REST API'
   heating_system_type: 'Autoadattivo: Tipo di Impianto'
   heating_system_type_option_ufh: 'Riscaldamento a Pavimento'
   heating_system_type_option_ufh_rad: 'Riscaldamento a Pavimento + Radiatori'
   heating_system_type_option_rad: 'Radiatori'
   heating_offset_sensor: 'Autoadattivo: Offset Riscaldamento'
   cooling_offset_sensor: 'Autoadattivo: Offset Raffrescamento'
+  auto_adaptive_setpoint_bias: 'Autoadattivo: Bias del Setpoint'
+  dynamic_learning_rate_sensor: 'Autoadattivo: Tasso di Apprendimento Dinamico'
+  temperature_feedback: 'Autoadattivo: Feedback Temperatura Ambiente Attuale'
+  thermostat_overshoot_compensation: 'Autoadattivo: Compensazione Superamento Termostato'
+  total_increasing_heating_consumed: Consumo Totale Riscaldamento
+  total_increasing_heating_delivered: Energia Totale Prodotta Riscaldamento
+  total_increasing_cool_consumed: Consumo Totale Raffrescamento
+  total_increasing_cool_delivered: Energia Totale Prodotta Raffrescamento
+  total_increasing_dhw_consumed: Consumo Totale ACS
+  total_increasing_dhw_delivered: Energia Totale Prodotta ACS

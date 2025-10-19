@@ -33,8 +33,8 @@ substitutions:
   z1_flow_temp_target: Zon 1 H/C inställt värde
   status_prohibit_cool_z1: Zon 1 kylning förbjudet
   status_prohibit_heating_z1: Zon 1 uppvärmning förbjudet
-  heatpump_climate_z1: Zon 1 klimat
-  heatpump_climate_room_z1: Zon 1 temperatur
+  heatpump_climate_z1: Zon 1 Framledningstemp
+  heatpump_climate_room_z1: Zon 1 Rumstemp
   z1_room_temp_target: Zon 1 rum inställt värde
   z1_room_temp: Zon 1 rumstemperatur
   heatpump_number_z2_set_flow_temperature: Zon 2 H/C inställning
@@ -42,8 +42,8 @@ substitutions:
   status_prohibit_cool_z2: Zon 2 kylning förbjudet
   status_prohibit_heating_z2: Zon 2 uppvärmning förbjudet
   heatpump_number_z2_set_room_temperature: Zon 2 rum inställt värde
-  heatpump_climate_z2: Zon 2 klimat
-  heatpump_climate_room_z2: Zon 2 temperatur
+  heatpump_climate_z2: Zon 2 Framledningstemp
+  heatpump_climate_room_z2: Zon 2 Rumstemp
   z2_room_temp_target: Zon 2 rum inställt värde
   z2_room_temp: Zon 2 rumstemperatur
   mixing_tank_temp: Blandningstank temperatur
@@ -85,6 +85,8 @@ substitutions:
   heat_compensation_curve: Värmekompensationskurva
   cool_target_temperature: Kyl måltemperatur
   cool_flow_temperature: Kyl framledning temperatur
+  floor_dry_up: Golvtorkning
+  cool_compensation_curve: Kylkompensationskurva
   operation_off: Av
   hotwater: Varmvatten
   heating: Uppvärmning
@@ -130,18 +132,31 @@ substitutions:
   minimum_compressor_on_time: 'Kort cykel: Min drifttid'
   lockout_duration: 'Kort cykel: Låstid (min)'
   short_cycle_mitigation_button: 'Kort cykel: Avbryt lås'
+  predictive_short_cycle_control_enabled: 'Kort cykel: Förebyggande Skydd'
+  predictive_short_cycle_high_delta_time_window: 'Kort cykel: Hög Deltavaraktighet'
   auto_adaptive_control_enabled: 'Autoadaptiv: Styrning'
   heating_slope: 'Autoadaptiv: Lutning Värmekurva'
   cooling_slope: 'Autoadaptiv: Lutning Kylkurva'
   maximum_heating_flow_temp: 'Autoadaptiv: Max. Framledningstemp. Värme'
+  minimum_heating_flow_temp: 'Autoadaptiv: Min. Framledningstemp. Värme'
   minimum_cooling_flow_temp: 'Autoadaptiv: Min. Framledningstemp. Kyla'
   cooling_smart_start_temp: 'Autoadaptiv: Smart Starttemp Kyla'
   temperature_feedback_source: 'Autoadaptiv: Källa för Rumstemperatur'
   temperature_feedback_option_room: 'Rumstermostat'
-  temperature_feedback_option_api: 'REST API'
+  temperature_feedback_option_api: 'Home Assistant / REST API'
   heating_system_type: 'Autoadaptiv: Typ av Värmesystem'
   heating_system_type_option_ufh: 'Golvvärme'
   heating_system_type_option_ufh_rad: 'Golvvärme + Radiatorer'
   heating_system_type_option_rad: 'Radiatorer'
   heating_offset_sensor: 'Autoadaptiv: Förskjutning Värme'
   cooling_offset_sensor: 'Autoadaptiv: Förskjutning Kyla'
+  auto_adaptive_setpoint_bias: 'Autoadaptiv: Börvärdes-bias'
+  dynamic_learning_rate_sensor: 'Autoadaptiv: Dynamisk Inlärningshastighet'
+  temperature_feedback: 'Autoadaptiv: Återkoppling Aktuell Rumstemperatur'
+  thermostat_overshoot_compensation: 'Autoadaptiv: Kompensation för Termostatöverskridande'
+  total_increasing_heating_consumed: Totalförbrukning Värme
+  total_increasing_heating_delivered: Total Levererad Värme
+  total_increasing_cool_consumed: Totalförbrukning Kyla
+  total_increasing_cool_delivered: Total Levererad Kyla
+  total_increasing_dhw_consumed: Totalförbrukning Varmvatten
+  total_increasing_dhw_delivered: Total Levererat Varmvatten

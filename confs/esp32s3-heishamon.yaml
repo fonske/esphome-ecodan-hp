@@ -58,7 +58,7 @@ uart:
       number: GPIO8
       mode:
         output: true
-    baud_rate: 9600
+    baud_rate: 2400
     parity: EVEN
     stop_bits: 1
     # debug:
@@ -82,6 +82,8 @@ sensor:
   - platform: internal_temperature
     name: ${internal_esp_temperature}
     entity_category: diagnostic
+    unit_of_measurement: "°C"
+    device_class: temperature
 
 # is mutual exclusive with wifi
 # comment wifi section in main yaml when using ehternet

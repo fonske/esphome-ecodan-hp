@@ -32,8 +32,8 @@ substitutions:
   z1_flow_temp_target: Temp cible Zone 1 C/F
   status_prohibit_cool_z1: Zone 1 Clim Interdite
   status_prohibit_heating_z1: Zone 1 Chauffage Interdit
-  heatpump_climate_z1: Thermostat Zone 1
-  heatpump_climate_room_z1: Température Zone 1
+  heatpump_climate_z1: Zone 1 Temp. Départ
+  heatpump_climate_room_z1: Zone 1 Temp. Ambiante
   z1_room_temp_target: Z1 Temp cible pièce
   z1_room_temp: Z1 Temp pièce
   heatpump_number_z2_set_flow_temperature: Temp cible Zone 2 C/F
@@ -41,8 +41,8 @@ substitutions:
   status_prohibit_cool_z2: Zone 2 Clim Interdite
   status_prohibit_heating_z2: Zone 2 Chauffage Interdit
   heatpump_number_z2_set_room_temperature: Z2 Temp cible pièce
-  heatpump_climate_z2: Thermostat Zone 2
-  heatpump_climate_room_z2: Température Zone 2
+  heatpump_climate_z2: Zone 2 Temp. Départ
+  heatpump_climate_room_z2: Zone 2 Temp. Ambiante
   z2_room_temp_target: Z2 Temp cible pièce
   z2_room_temp: Z2 Temp pièce
   mixing_tank_temp: Température Mixing Tank
@@ -84,6 +84,8 @@ substitutions:
   heat_compensation_curve: Courbe de compensation
   cool_target_temperature: Temp cible Clim
   cool_flow_temperature: Temp eau départ clim
+  floor_dry_up: Séchage de la Chape
+  cool_compensation_curve: Courbe de Compensation de Refroidissement
   operation_off: "Off"
   hotwater: Eau chaude
   heating: Chauffage
@@ -131,17 +133,30 @@ substitutions:
   cooling_smart_start_temp: 'Auto-Adaptatif: Temp. de Démarrage Intelligent Refroidissement'
   lockout_duration: 'Court-circuit: Durée du verrouillage (min)'
   short_cycle_mitigation_button: 'Court-circuit: Annuler le verrouillage'
+  predictive_short_cycle_control_enabled: 'Court-circuit: Prévention Prédictive'
+  predictive_short_cycle_high_delta_time_window: 'Court-circuit: Durée Delta Élevé'
   auto_adaptive_control_enabled: 'Auto-Adaptatif: Commande'
   heating_slope: 'Auto-Adaptatif: Pente de la Courbe de Chauffe'
   cooling_slope: 'Auto-Adaptatif: Pente de la Courbe de Refroidissement'
   maximum_heating_flow_temp: 'Auto-Adaptatif: Temp. Max. de Départ Chauffage'
+  minimum_heating_flow_temp: 'Auto-Adaptatif: Temp. Min. de Départ Chauffage'
   minimum_cooling_flow_temp: 'Auto-Adaptatif: Temp. Min. de Départ Refroidissement'
   temperature_feedback_source: 'Auto-Adaptatif: Source de Température Ambiante'
   temperature_feedback_option_room: "Thermostat d'Ambiance"
-  temperature_feedback_option_api: 'API REST'
+  temperature_feedback_option_api: 'Home Assistant / REST API'
   heating_system_type: 'Auto-Adaptatif: Type de Système de Chauffage'
   heating_system_type_option_ufh: 'Chauffage au Sol'
   heating_system_type_option_ufh_rad: 'Chauffage au Sol + Radiateurs'
   heating_system_type_option_rad: 'Radiateurs'
   heating_offset_sensor: 'Auto-Adaptatif: Décalage Chauffage'
   cooling_offset_sensor: 'Auto-Adaptatif: Décalage Refroidissement'
+  auto_adaptive_setpoint_bias: 'Auto-Adaptatif: Bias de Consigne'
+  dynamic_learning_rate_sensor: "Auto-Adaptatif: Taux d'Apprentissage Dynamique"
+  temperature_feedback: 'Auto-Adaptatif: Retour de Température Ambiante Actuelle'
+  thermostat_overshoot_compensation: 'Auto-Adaptatif: Compensation de Dépassement du Thermostat'
+  total_increasing_heating_consumed: Consommation Totale Chauffage
+  total_increasing_heating_delivered: Production Totale Chauffage
+  total_increasing_cool_consumed: Consommation Totale Refroidissement
+  total_increasing_cool_delivered: Production Totale Refroidissement
+  total_increasing_dhw_consumed: Consommation Totale ECS
+  total_increasing_dhw_delivered: Production Totale ECS

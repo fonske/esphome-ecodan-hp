@@ -10,7 +10,7 @@ esp32:
   cpu_frequency: 240MHz
   framework:
     type: esp-idf
-    version: 5.4.0
+    version: recommended
     # Custom sdkconfig options
     sdkconfig_options:
       COMPILER_OPTIMIZATION_SIZE: y
@@ -48,7 +48,7 @@ uart:
       number: GPIO39
       mode:
         output: true
-    baud_rate: 9600
+    baud_rate: 2400
     parity: EVEN
     stop_bits: 1
     # debug:
@@ -73,3 +73,5 @@ sensor:
   - platform: internal_temperature
     name: ${internal_esp_temperature}
     entity_category: diagnostic
+    unit_of_measurement: "°C"
+    device_class: temperature

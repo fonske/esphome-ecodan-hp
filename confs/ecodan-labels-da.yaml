@@ -32,8 +32,8 @@ substitutions:
   z1_flow_temp_target: Zone 1 H/C indstillet værdi
   status_prohibit_cool_z1: Zone 1 køling forbudt
   status_prohibit_heating_z1: Zone 1 opvarmning forbudt
-  heatpump_climate_z1: Zone 1 klima
-  heatpump_climate_room_z1: Zone 1 temperatur
+  heatpump_climate_z1: Zone 1 Fremløbstemp
+  heatpump_climate_room_z1: Zone 1 Rumtemp
   z1_room_temp_target: Zone 1 rum indstilling
   z1_room_temp: Zone 1 rumtemperatur
   heatpump_number_z2_set_flow_temperature: Zone 2 H/C indstilling
@@ -41,8 +41,8 @@ substitutions:
   status_prohibit_cool_z2: Zone 2 køling forbudt
   status_prohibit_heating_z2: Zone 2 opvarmning forbudt
   heatpump_number_z2_set_room_temperature: Zone 2 rum indstilling
-  heatpump_climate_z2: Zone 2 klima
-  heatpump_climate_room_z2: Zone 2 temperatur
+  heatpump_climate_z2: Zone 2 Fremløbstemp
+  heatpump_climate_room_z2: Zone 2 Rumtemp
   z2_room_temp_target: Zone 2 rum indstilling
   z2_room_temp: Zone 2 rumtemperatur
   mixing_tank_temp: Blandingsbeholder temperatur
@@ -84,6 +84,8 @@ substitutions:
   heat_compensation_curve: Varme kompensationskurve
   cool_target_temperature: Køle måltemperatur
   cool_flow_temperature: Køle fremledning temperatur
+  floor_dry_up: Gulvoptørring
+  cool_compensation_curve: Kølekompensationskurve
   operation_off: Fra
   hotwater: Brugsvand
   heating: Opvarmning
@@ -129,18 +131,31 @@ substitutions:
   minimum_compressor_on_time: 'Kort cyklus: Min driftstid'
   lockout_duration: 'Kort cyklus: Låstid (min)'
   short_cycle_mitigation_button: 'Kort cyklus: Ophæv lås'
+  predictive_short_cycle_control_enabled: 'Kort cyklus: Forebyggende Beskyttelse'
+  predictive_short_cycle_high_delta_time_window: 'Kort cyklus: Høj Delta Varighed'
   auto_adaptive_control_enabled: 'Auto-Adaptiv: Styring'
   heating_slope: 'Auto-Adaptiv: Hældning Varmekurve'
   cooling_slope: 'Auto-Adaptiv: Hældning Kølekurve'
   maximum_heating_flow_temp: 'Auto-Adaptiv: Maks. Fremløbstemperatur Varme'
+  minimum_heating_flow_temp: 'Auto-Adaptiv: Min. Fremløbstemperatur Varme'
   minimum_cooling_flow_temp: 'Auto-Adaptiv: Min. Fremløbstemperatur Køling'
   cooling_smart_start_temp: 'Auto-Adaptiv: Smart Start Temp Køling'
   temperature_feedback_source: 'Auto-Adaptiv: Kilde til Rumtemperatur'
   temperature_feedback_option_room: 'Rumtermostat'
-  temperature_feedback_option_api: 'REST API'
+  temperature_feedback_option_api: 'Home Assistant / REST API'
   heating_system_type: 'Auto-Adaptiv: Varmesystemtype'
   heating_system_type_option_ufh: 'Gulvvarme'
   heating_system_type_option_ufh_rad: 'Gulvvarme + Radiatorer'
   heating_system_type_option_rad: 'Radiatorer'
   heating_offset_sensor: 'Auto-Adaptiv: Forskydning Varme'
   cooling_offset_sensor: 'Auto-Adaptiv: Forskydning Køling'
+  auto_adaptive_setpoint_bias: 'Auto-Adaptiv: Setpunkt Bias'
+  dynamic_learning_rate_sensor: 'Auto-Adaptiv: Dynamisk Læringsrate'
+  temperature_feedback: 'Auto-Adaptiv: Tilbagemelding Nuværende Rumtemperatur'
+  thermostat_overshoot_compensation: 'Auto-Adaptiv: Kompensation for Termostat-overskridelse'
+  total_increasing_heating_consumed: Total Forbrugt Varme
+  total_increasing_heating_delivered: Total Leveret Varme
+  total_increasing_cool_consumed: Total Forbrugt Køling
+  total_increasing_cool_delivered: Total Leveret Køling
+  total_increasing_dhw_consumed: Total Forbrugt Varmt Vand
+  total_increasing_dhw_delivered: Total Leveret Varmt Vand

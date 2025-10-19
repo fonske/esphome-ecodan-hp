@@ -32,8 +32,8 @@ substitutions:
   z1_flow_temp_target: Valor de Consigna de Calef./Refrig. Zona 1
   status_prohibit_cool_z1: Prohibir Enfriamiento Zona 1
   status_prohibit_heating_z1: Prohibir Calefacción Zona 1
-  heatpump_climate_z1: Clima Zona 1
-  heatpump_climate_room_z1: Temperatura Zona 1
+  heatpump_climate_z1: Zona 1 Temp. Flujo
+  heatpump_climate_room_z1: Zona 1 Temp. Ambiente
   z1_room_temp_target: Valor de Consigna de la Habitación Zona 1
   z1_room_temp: Temp. Habitación Zona 1
   heatpump_number_z2_set_flow_temperature: Valor de Consigna de Calef./Refrig. Zona 2
@@ -41,8 +41,8 @@ substitutions:
   status_prohibit_cool_z2: Prohibir Enfriamiento Zona 2
   status_prohibit_heating_z2: Prohibir Calefacción Zona 2
   heatpump_number_z2_set_room_temperature: Consigna de la Habitación Zona 2
-  heatpump_climate_z2: Clima Zona 2
-  heatpump_climate_room_z2: Temperatura Zona 2
+  heatpump_climate_z2: Zona 2 Temp. Flujo
+  heatpump_climate_room_z2: Zona 2 Temp. Ambiente
   z2_room_temp_target: Valor de Consigna de la Habitación Zona 2
   z2_room_temp: Temp. Habitación Zona 2
   mixing_tank_temp: Temp. Depósito Mezcla
@@ -84,6 +84,8 @@ substitutions:
   heat_compensation_curve: Curva de Compensación de Calefacción
   cool_target_temperature: Temperatura Objetivo Refrigeración
   cool_flow_temperature: Temperatura de Flujo de Refrigeración
+  floor_dry_up: Secado de Suelo
+  cool_compensation_curve: Curva de Compensación de Refrigeración
   operation_off: Apagado
   hotwater: Agua Caliente
   heating: Calefacción
@@ -130,18 +132,31 @@ substitutions:
   minimum_compressor_on_time: 'Ciclo corto: Tiempo mínimo de compresor'
   lockout_duration: 'Ciclo corto: Duración del bloqueo (min)'
   short_cycle_mitigation_button: 'Ciclo corto: Cancelar bloqueo'
+  predictive_short_cycle_control_enabled: 'Ciclo corto: Prevención Predictiva'
+  predictive_short_cycle_high_delta_time_window: 'Ciclo corto: Duración de Delta Alto'
   auto_adaptive_control_enabled: 'Autoadaptativo: Control'
   heating_slope: 'Autoadaptativo: Pendiente Curva de Calefacción'
   cooling_slope: 'Autoadaptativo: Pendiente Curva de Refrigeración'
   maximum_heating_flow_temp: 'Autoadaptativo: Temp. Máx. de Flujo Calefacción'
+  minimum_heating_flow_temp: 'Autoadaptativo: Temp. Mín. de Flujo Calefacción'
   minimum_cooling_flow_temp: 'Autoadaptativo: Temp. Mín. de Flujo Refrigeración'
   cooling_smart_start_temp: 'Autoadaptativo: Temp. de Inicio Inteligente Refrigeración'
   temperature_feedback_source: 'Autoadaptativo: Fuente de Temperatura Ambiente'
   temperature_feedback_option_room: 'Termostato de Ambiente'
-  temperature_feedback_option_api: 'API REST'
+  temperature_feedback_option_api: 'Home Assistant / REST API'
   heating_system_type: 'Autoadaptativo: Tipo de Sistema de Calefacción'
   heating_system_type_option_ufh: 'Suelo Radiante'
   heating_system_type_option_ufh_rad: 'Suelo Radiante + Radiadores'
   heating_system_type_option_rad: 'Radiadores'
   heating_offset_sensor: 'Autoadaptativo: Desplazamiento Calefacción'
   cooling_offset_sensor: 'Autoadaptativo: Desplazamiento Refrigeración'
+  auto_adaptive_setpoint_bias: 'Autoadaptativo: Bias de Consigna'
+  dynamic_learning_rate_sensor: 'Autoadaptativo: Tasa de Aprendizaje Dinámica'
+  temperature_feedback: 'Autoadaptativo: Feedback de Temperatura Ambiente Actual'
+  thermostat_overshoot_compensation: 'Autoadaptativo: Compensación de Sobreimpulso del Termostato'
+  total_increasing_heating_consumed: Consumo Total Calefacción
+  total_increasing_heating_delivered: Producción Total Calefacción
+  total_increasing_cool_consumed: Consumo Total Refrigeración
+  total_increasing_cool_delivered: Producción Total Refrigeración
+  total_increasing_dhw_consumed: Consumo Total ACS
+  total_increasing_dhw_delivered: Producción Total ACS

@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Checkout source code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Create dummy wifi credentials
         run: |
           echo "wifi_ssid: dummy" > secrets.yaml
@@ -58,20 +60,22 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Setup esphome build env
-        run: |
-          python -m venv venv
-          source venv/bin/activate
-          pip install wheel
-          pip install esphome==2025.7.5
-
-      - name: Build firmware
+      - name: Install ESPHome, Constrain Pydantic, and Build Firmware
         env:
           GITHUB_TOKEN: ${{ github.TOKEN }}
-        shell: bash
         run: |
-          source venv/bin/activate
+          pip install wheel esphome==2025.7.5
+
+          # Create a constraint file to force a pydantic version
+          # This will be respected by the ESP-IDF's internal environment creation
+          echo "pydantic<2.12.0" > constraints.txt
+          
+          # Export the constraint file's path as an environment variable
+          export PIP_CONSTRAINT="${{ github.workspace }}/constraints.txt"
+
+          # Run the compile. The hidden environment will now use the correct pydantic
           esphome compile build.yaml
+
           cp .esphome/build/ecodan-heatpump/.pioenvs/ecodan-heatpump/firmware.ota.bin $PREFIX.ota.bin
           cp .esphome/build/ecodan-heatpump/.pioenvs/ecodan-heatpump/firmware.factory.bin $PREFIX.factory.bin
           gh release upload ${{github.event.release.tag_name}} $PREFIX.ota.bin
@@ -93,3 +97,4 @@ jobs:
               s/FILEFACTORY/$PREFIX.factory.bin/g" json/manifest.json > $MANIFEST.json
           cat $MANIFEST.json
           gh release upload ${{github.event.release.tag_name}} $MANIFEST.json
+

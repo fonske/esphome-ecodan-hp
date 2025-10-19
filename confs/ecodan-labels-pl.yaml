@@ -32,8 +32,8 @@ substitutions:
   z1_flow_temp_target: Ustawiona wartość H/C Strefa 1
   status_prohibit_cool_z1: Zakaz chłodzenia Strefa 1
   status_prohibit_heating_z1: Zakaz ogrzewania Strefa 1
-  heatpump_climate_z1: Klimat Strefa 1
-  heatpump_climate_room_z1: Temperatura Strefa 1
+  heatpump_climate_z1: Strefa 1 Temp. Zasilania
+  heatpump_climate_room_z1: Strefa 1 Temp. Pokojowa
   z1_room_temp_target: Ustawiona temperatura Strefa 1
   z1_room_temp: Temperatura Strefa 1
   heatpump_number_z2_set_flow_temperature: Ustawiona temperatura H/C Strefa 2
@@ -41,8 +41,8 @@ substitutions:
   status_prohibit_cool_z2: Zakaz chłodzenia Strefa 2
   status_prohibit_heating_z2: Zakaz ogrzewania Strefa 2
   heatpump_number_z2_set_room_temperature: Ustawiona temperatura Strefa 2
-  heatpump_climate_z2: Klimat Strefa 2
-  heatpump_climate_room_z2: Temperatura Strefa 2
+  heatpump_climate_z2: Strefa 2 Temp. Zasilania
+  heatpump_climate_room_z2: Strefa 2 Temp. Pokojowa
   z2_room_temp_target: Ustawiona temperatura Strefa 2
   z2_room_temp: Temperatura Strefa 2
   mixing_tank_temp: Temperatura zbiornika mieszającego
@@ -84,6 +84,8 @@ substitutions:
   heat_compensation_curve: Krzywa kompensacji grzania
   cool_target_temperature: Ustawiona temperatura chłodzenia
   cool_flow_temperature: Temperatura zasilania chłodzenia
+  floor_dry_up: Wygrzewanie Posadzki
+  cool_compensation_curve: Krzywa Kompensacji Chłodzenia
   operation_off: "Wyłączony"
   hotwater: Woda grzewcza
   heating: Ogrzewanie pomieszczeń
@@ -129,18 +131,31 @@ substitutions:
   minimum_compressor_on_time: 'Krótki cykl: Minimalny czas pracy'
   lockout_duration: 'Krótki cykl: Czas blokady (min)'
   short_cycle_mitigation_button: 'Krótki cykl: Anuluj blokadę'
+  predictive_short_cycle_control_enabled: 'Krótki cykl: Prewencja Predykcyjna'
+  predictive_short_cycle_high_delta_time_window: 'Krótki cykl: Czas Trwania Wysokiej Delty'
   auto_adaptive_control_enabled: 'Autoadaptacja: Sterowanie'
   heating_slope: 'Autoadaptacja: Nachylenie Krzywej Grzewczej'
   cooling_slope: 'Autoadaptacja: Nachylenie Krzywej Chłodzenia'
   maximum_heating_flow_temp: 'Autoadaptacja: Maks. Temp. Zasilania Ogrzewanie'
+  minimum_heating_flow_temp: 'Autoadaptacja: Min. Temp. Zasilania Ogrzewanie'
   minimum_cooling_flow_temp: 'Autoadaptacja: Min. Temp. Zasilania Chłodzenie'
   cooling_smart_start_temp: 'Autoadaptacja: Inteligentna Temp. Startu Chłodzenia'
   temperature_feedback_source: 'Autoadaptacja: Źródło Temperatury w Pomieszczeniu'
   temperature_feedback_option_room: 'Termostat Pokojowy'
-  temperature_feedback_option_api: 'REST API'
+  temperature_feedback_option_api: 'Home Assistant / REST API'
   heating_system_type: 'Autoadaptacja: Typ Systemu Grzewczego'
   heating_system_type_option_ufh: 'Ogrzewanie Podłogowe'
   heating_system_type_option_ufh_rad: 'Ogrzewanie Podłogowe + Grzejniki'
   heating_system_type_option_rad: 'Grzejniki'
   heating_offset_sensor: 'Autoadaptacja: Przesunięcie Ogrzewanie'
   cooling_offset_sensor: 'Autoadaptacja: Przesunięcie Chłodzenie'
+  auto_adaptive_setpoint_bias: 'Autoadaptacja: Przesunięcie Wartości Zadanej'
+  dynamic_learning_rate_sensor: 'Autoadaptacja: Dynamiczne Tempo Uczenia się'
+  temperature_feedback: 'Autoadaptacja: Sprzężenie Zwrotne Aktualnej Temperatury'
+  thermostat_overshoot_compensation: 'Autoadaptacja: Kompensacja Przekroczenia Termostatu'
+  total_increasing_heating_consumed: Całkowite Zużycie Ogrzewanie
+  total_increasing_heating_delivered: Całkowita Produkcja Ogrzewanie
+  total_increasing_cool_consumed: Całkowite Zużycie Chłodzenie
+  total_increasing_cool_delivered: Całkowita Produkcja Chłodzenie
+  total_increasing_dhw_consumed: Całkowite Zużycie CWU
+  total_increasing_dhw_delivered: Całkowita Produkcja CWU
