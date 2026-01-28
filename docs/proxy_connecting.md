@@ -5,7 +5,7 @@
 
 @fonkse created a pcb + wires and it is basically plug and play. This is the recommended hardware setup for proxy.
 
-![image](https://github.com/gekkekoe/esphome-ecodan-hp/blob/main/img/proxy-setup.png?raw=true)
+![image](https://github.com/fonske/esphome-ecodan-hp/blob/main/img/proxy-setup.png?raw=true)
 
 Select the `esp32s3-proxy2.yaml` as configuration in `ecodan-esphome.yaml`. Build and flash the firmware.
 
@@ -23,11 +23,11 @@ FTC Flow Temperature Controller (main controller normally fitted on the inside u
 > Before opening the unit ensure that there is no power going into the unit.
 > Switch off heatpump and then turn off circuit breakers to heatpump.
 
- ![image](https://github.com/gekkekoe/esphome-ecodan-hp/blob/main/img/connection_FTC.jpg?raw=true)
+ ![image](https://github.com/fonske/esphome-ecodan-hp/blob/main/img/connection_FTC.jpg?raw=true)
 
 2. Connect the cable from the heatpump to the port labeled 'INT' (disconnect melcloud wifi adapter from the main board if it was connected). Connect the melcloud wifi adapter to the 'EXT' port.
    
-![image](https://github.com/gekkekoe/esphome-ecodan-hp/blob/main/img/proxy2_atom.jpg?raw=true)
+![image](https://github.com/fonskee/esphome-ecodan-hp/blob/main/img/proxy2_atom.jpg?raw=true)
 
 3. If the Atom is pre-flashed, you are basically done. Close the unit and restore the power. The Atom will go into WiFi hotspot mode to allow you to connect it to your home network. See https://esphome.io/components/captive_portal.html for details.
  
